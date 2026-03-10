@@ -66,28 +66,23 @@ UML_Diagram.png (or UML_Diagram.pdf)
 
 ## 🧩 Step 1 — Choose Your Dataset
 
-**Dataset Name:**  
-**Source / Link:**  
+**Dataset Name:** Epstein flight records (cleaned)
+**Source / Link:** Teacher‑provided CSV
 
-**What this dataset contains (2–3 sentences):**  
-____________________________________________________________________  
-____________________________________________________________________  
-
----
+**What this dataset contains (2–3 sentences):**
+The file contains a list of individuals connected to Jeffrey Epstein along
+with the number of flights they took and their nationality.  Each row is a
+person record; the important columns for this project are name, flight count,
+and nationality.
 
 ## ❓ Step 2 — Write Your Guiding Question
 
 Your guiding question should be something you can answer using your dataset.
 
 **My guiding question:**  
-____________________________________________________________________  
-____________________________________________________________________  
-
-Examples:
-
-- "Which Pokémon has the highest HP?"  
-- "What is the average life expectancy in this dataset?"  
-- "Which state had the highest vaccination rate?"  
+How many total flights were taken by each individual, who took the most flights,
+which people flew more than 100 times, and how are flights distributed by
+nationality?
 
 ---
 
@@ -104,31 +99,33 @@ You must create a class that represents **one row** of your dataset.
 - Any additional analysis/helper methods as needed  
 
 ### ✏ Include your class diagram
+(See `UML_Diagram.png` for a simple class diagram showing attributes and
+methods of the `Person` class.)
 
 
 ---
 
 ## 📥 Step 4 — Read Your CSV File Using Scanner
 
-In `Main.java`, you must:
+In `App.java` (or `Main.java`), you must:
 
-- Create a `File` object  
-- Use `Scanner` to read the file  
-- Skip the header row (if needed)  
-- Read each line  
-- Split by commas using `.split(",")`  
-- Trim whitespace  
-- Parse numbers using `Integer.parseInt()` or `Double.parseDouble()`  
-- Construct objects  
-- Add them to an ArrayList or array  
+- Create a `File` object pointing at the Epstein CSV
+- Use `Scanner` to read the file
+- Skip the header row
+- Read each line
+- Split by commas (taking care with quoted fields)
+- Trim whitespace
+- Parse the flight count as an integer
+- Construct `Person` objects
+- Add them to an `ArrayList<Person>`
 
 ### Column → Attribute Map
 
-| Attribute Name | CSV Column Name | Column Index # | Notes |
-|----------------|------------------|----------------|-------|
-|                |                  |                |       |
-|                |                  |                |       |
-|                |                  |                |       |
+| Attribute Name | CSV Column Name     | Column Index # | Notes |
+|----------------|----------------------|----------------|-------|
+| name           | Name                 | 1              | full name of individual |
+| flights        | Total Flights        | 5              | may include non‑numeric characters |
+| nationality    | Nationality          | 9              | can be empty |
 
 ---
 
@@ -137,22 +134,21 @@ In `Main.java`, you must:
 You must write **at least two algorithms** to analyze your dataset.
 
 ### Required: Choose 2 or more algorithms
-- [ ] Minimum value of attribute  
-- [ ] Maximum value of attribute  
-- [ ] Average of attribute  
-- [ ] Filter by category  
-- [ ] Count items matching a condition  
+- [ ] Maximum value of attribute
+- [ ] Sorting
+- [ ] Filter or group by category
+- [ ] Counting items that meet a condition
 
 **Algorithms I will implement:**
 
-1. __________________________________________  
-2. __________________________________________  
+1. Sort individuals by flight count (descending)
+2. Find the person with the maximum number of flights
+3. List all individuals with more than 100 flights
+4. Compute total flights by nationality
 
-Optional extras:  
-- Sorting  
-- Top/bottom N items  
-- Grouping by category  
-- Comparison between groups  
+Optional extras:
+- Top/bottom N items
+- Additional grouping or statistics
 
 ---
 
@@ -160,23 +156,26 @@ Optional extras:
 
 After analyzing your objects, print:
 
-- ✔ How many rows were loaded  
-- ✔ Your algorithm results  
-- ✔ A clear answer to your guiding question  
+- ✔ How many rows were loaded
+- ✔ Your algorithm results
+- ✔ A clear answer to your guiding question
 
-**My findings:**  
-____________________________________________________________________  
-____________________________________________________________________  
-____________________________________________________________________  
+**My findings:**
+- Total records loaded: 1264 person entries from the Epstein dataset.
+- The individual with the most flights was Jeffrey Epstein (553 flights),
+  followed by Ghislaine Maxwell and others.
+- Six people flew more than 100 times.
+- Flights are heavily skewed toward American nationals, who account for the
+  vast majority of flights.
 
-**My answer to the guiding question:**  
-____________________________________________________________________  
-____________________________________________________________________  
-
+**My answer to the guiding question:**
+Jeffrey Epstein took the most flights (553).  Only a handful of individuals
+flew more than 100 times, and Americans dominated the total flight counts.
 ---
 
 ## 📝 Step 7 — Documentation Requirements
-
+*Javadoc comments have been added to every class, constructor, and method in
+`Person.java` and `App.java`.*
 ### ✔ Javadoc Comments
 You MUST use Javadoc for:
 
@@ -218,10 +217,15 @@ Write a short reflection (3–5 sentences):
 - How trustworthy are your insights?
 
 **My reflection:**  
-____________________________________________________________________  
-____________________________________________________________________  
-____________________________________________________________________  
-____________________________________________________________________  
+- Some entries use `-1` to mark missing nutrient values, which could skew
+  averages if not handled.
+- The dataset only covers a specific set of individuals and may omit
+  others, so the results are not representative of all air travelers.
+  so it may not be representative of all products or current formulations.
+- Consumer ratings are subjective and the criteria for scoring are unknown,
+  introducing potential bias.
+- Any errors or omissions in the CSV would directly affect the computed
+  statistics, so conclusions should be drawn cautiously.
 
 ---
 
