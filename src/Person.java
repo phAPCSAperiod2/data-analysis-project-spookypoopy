@@ -18,9 +18,11 @@ public class Person {
     public int getFlights() { return flights; }
     public String getNationality() { return nationality; }
 
-    @Override
     public String toString() {
-        return String.format("%s (%d flights, %s)", name, flights,
-                nationality == null ? "Unknown" : nationality);
+        String nat = nationality;
+        if (nat == null) {
+            nat = "Unknown";
+        }
+        return name + " (" + flights + " flights, " + nat + ")";
     }
 }
